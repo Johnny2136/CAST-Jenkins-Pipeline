@@ -1,7 +1,9 @@
 node ('CAST-Analysis-Server') {
     stage ('CAST Analysis') {
-        //git credentialsId: '6fca6e6a-2db0-4c2d-abec-513591c993e7', url: 'https://github.com/prabinovich/CAST-Jenkins-Pipeline.git'
-        git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
+        git credentialsId: '6fca6e6a-2db0-4c2d-abec-513591c993e7', url: 'https://github.com/prabinovich/CAST-Jenkins-Pipeline.git'
+        dir('smallFibonacci') {
+           git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
+        }
 
         echo '-- Packaging and Delivery of Source Code --'
         bat '%WORKSPACE%\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=v1" "version=version %BUILD_NUMBER%"'
