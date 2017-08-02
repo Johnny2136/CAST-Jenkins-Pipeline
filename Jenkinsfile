@@ -3,13 +3,13 @@ node ('CAST-Analysis-Server') {
         git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
 
         echo '-- Packaging and Delivery of Source Code --'
-        bat 'C:\\CAST\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=v1" "version=version %BUILD_NUMBER%"'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=v1" "version=version %BUILD_NUMBER%"'
 
         echo '-- Analyze Application --'
-        bat 'C:\\CAST\\CLI-Scripts\\CMS_Analyze.bat "profile=sandbox802" "app=SmallFibonacci"'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_Analyze.bat "profile=sandbox802" "app=SmallFibonacci"'
 
         echo '-- Generate Snapshot --'
-        bat 'C:\\CAST\\CLI-Scripts\\CMS_GenerateSnapshot.bat "profile=sandbox802" "app=SmallFibonacci" "version=version %BUILD_NUMBER%"'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_GenerateSnapshot.bat "profile=sandbox802" "app=SmallFibonacci" "version=version %BUILD_NUMBER%"'
     }
 }
 
