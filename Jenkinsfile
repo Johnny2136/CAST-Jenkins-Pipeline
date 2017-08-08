@@ -15,21 +15,6 @@ node ('CAST-Analysis-Server') {
         bat '%WORKSPACE%\\CLI-Scripts\\CMS_GenerateSnapshot.bat "profile=sandbox802" "app=SmallFibonacci" "version=version %BUILD_NUMBER%"'
     }
 }
-node ('SONAR-Analysis-Server') {
-    stage ('Get Code') {
-        git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
-   }
-    stage('Sonarqube analysis') {
-    steps {
-    script {
-             scannerHome = tool 'SonarScanner';
-        }
-     withSonarQubeEnv('SonarQube') {
-         bat "${scannerHome}/bin/sonar-scanner.bat" 
-    }
-
-    }
-        }
 
 node ('Docker-Build-Box') {
    
