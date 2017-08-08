@@ -16,9 +16,17 @@ node ('CAST-Analysis-Server') {
     }
 }
 
-node ('SonarScan'){
-codesonar conditions: [], credentialId: '1b132c46-025f-4c76-986d-91b3237c7c1f', hubAddress: 'https://gitlab.com/johnny2136/SmallFibonacci.git', projectName: '${JOB_NAME}', protocol: 'https'
-}
+stage('Sonarqube analysis') {
+    steps {
+    script {
+             scannerHome = tool 'SonarScanner';
+        }
+     withSonarQubeEnv('SonarQube') {
+         bat "${scannerHome}/bin/sonar-scanner.bat" 
+    }
+
+    }
+        }
 
 node ('Docker-Build-Box') {
    
