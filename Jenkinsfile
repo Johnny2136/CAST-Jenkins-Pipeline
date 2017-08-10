@@ -6,7 +6,7 @@ node ('CAST-Analysis-Server') {
         }
 
         echo '-- Packaging and Delivery of Source Code --'
-        bat '%WORKSPACE%\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=v1" "version=version %BUILD_NUMBER%"'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=Template2" "version=version %BUILD_NUMBER%"'
 
         echo '-- Analyze Application --'
         bat '%WORKSPACE%\\CLI-Scripts\\CMS_Analyze.bat "profile=sandbox802" "app=SmallFibonacci"'
