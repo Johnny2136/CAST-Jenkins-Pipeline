@@ -9,13 +9,13 @@ node ('Docker-Build-Box') {
    stage ('Build App') {
         sh 'javac -d bin -cp "src/lib/*" src/fibo/Fibonacci.java src/fibo/FibonacciTest.java'
    }
-   stage ('Sonar Scan') {
-        build 'SonarFibo'
-   }
    stage ('Unit Tests') {
        dir ("bin") {
             sh 'java -cp .:../src/lib/* org.junit.runner.JUnitCore fibo.FibonacciTest'
        }
+   }
+   stage ('Sonar Scan') {
+        build 'SonarFibo'
    }
 
 
