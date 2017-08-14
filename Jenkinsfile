@@ -86,4 +86,4 @@ node ('Docker-Deploy-Box') {
         sh "docker run --detach=true -p 2222:22 --name smallfibonacci prabinovich/smallfibonacci" 
     } 
 }
-}
+
