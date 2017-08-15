@@ -12,7 +12,9 @@ node ('Docker-Build-Box') {
             sh 'java -cp .:../src/lib/* org.junit.runner.JUnitCore fibo.FibonacciTest'
        }
    }
-node ('SonarQube'){
+}
+
+node ('Master'){
    stage ('Sonar Scan') {
         build 'SonarFibo'
    }
