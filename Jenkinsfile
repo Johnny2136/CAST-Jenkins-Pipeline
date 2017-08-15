@@ -15,7 +15,7 @@ node ('Docker-Build-Box') {
    stage ('Sonar Scan') {
         build 'SonarFibo'
    }
-}
+
 
 node ('CAST-Analysis-Server') {
     stage ('CAST Analysis') {
