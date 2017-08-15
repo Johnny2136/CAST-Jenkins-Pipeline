@@ -14,11 +14,11 @@ node ('Docker-Build-Box') {
    }
 }
 
-node ('Master'){
-   stage ('Sonar Scan') {
-        build 'SonarFibo'
-   }
- }
+//node ('Master'){
+   //stage ('Sonar Scan') {
+        //build 'SonarFibo'
+   //}
+ //}
 
 
 node ('CAST-Analysis-Server') {
