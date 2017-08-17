@@ -39,6 +39,9 @@ node ('CAST-Analysis-Server') {
     }
 }
 
+stage('Deploy approval'){
+    input "Deploy to prod?"
+}
    
 node ('Docker-Build-Box') { 
    stage ('Build Docker Image') {
