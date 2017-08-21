@@ -14,34 +14,34 @@ node ('Docker-Build-Box') {
    }
 }
 
-//node ('Master'){
-   //stage ('Sonar Scan') {
-        //build 'SonarFibo'
-   //}
- //}
+node ('Master'){
+   stage ('Sonar Scan') {
+        build 'SonarFibo'
+   }
+ }
 
 
-//node ('CAST-Analysis-Server') {
-    //stage ('CAST Analysis') {
-        //git credentialsId: '6fca6e6a-2db0-4c2d-abec-513591c993e7', url: 'https://github.com/prabinovich/CAST-Jenkins-Pipeline.git'
-        //dir('smallFibonacci') {
-          // git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
-        //}
+node ('CAST-Analysis-Server') {
+    stage ('CAST Analysis') {
+        git credentialsId: '6fca6e6a-2db0-4c2d-abec-513591c993e7', url: 'https://github.com/prabinovich/CAST-Jenkins-Pipeline.git'
+        dir('smallFibonacci') {
+           git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
+        }
 
-        //echo '-- Packaging and Delivery of Source Code --'
-        //bat '%WORKSPACE%\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=Template2" "version=version %BUILD_NUMBER%"'
+        echo '-- Packaging and Delivery of Source Code --'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_AutomateDelivery.bat "profile=sandbox802" "app=SmallFibonacci" "fromVersion=Template2" "version=version %BUILD_NUMBER%"'
 
-        //echo '-- Analyze Application --'
-        //bat '%WORKSPACE%\\CLI-Scripts\\CMS_Analyze.bat "profile=sandbox802" "app=SmallFibonacci"'
+        echo '-- Analyze Application --'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_Analyze.bat "profile=sandbox802" "app=SmallFibonacci"'
 
-        //echo '-- Generate Snapshot --'
-        //bat '%WORKSPACE%\\CLI-Scripts\\CMS_GenerateSnapshot.bat "profile=sandbox802" "app=SmallFibonacci" "version=version %BUILD_NUMBER%"'
-    //}
-//}
+        echo '-- Generate Snapshot --'
+        bat '%WORKSPACE%\\CLI-Scripts\\CMS_GenerateSnapshot.bat "profile=sandbox802" "app=SmallFibonacci" "version=version %BUILD_NUMBER%"'
+    }
+}
 
-//stage('Deploy approval'){
-    //input "Deploy to prod?"
-//}
+stage('Deploy approval'){
+    input "Deploy to prod?"
+}
    
 node ('Docker-Build-Box') { 
    stage ('Build Docker Image') {
