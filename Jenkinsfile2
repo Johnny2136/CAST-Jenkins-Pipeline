@@ -21,7 +21,7 @@ parallel (
    stage ('Sonar Scan') {
         build 'SonarFibo'
    }
-}
+},
 
 
     
