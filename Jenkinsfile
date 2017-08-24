@@ -85,7 +85,7 @@ node ('Docker-Deploy-Box') {
     stage ('Docker Cleanup') {
         sh "docker stop smallfibonacci || true"
         sh "docker rm smallfibonacci || true" 
-        sh "docker rmi prabinovich/smallfibonacci || true"
+        sh "docker rmi -f prabinovich/smallfibonacci || true"
     }
     
     stage ('Run Docker Container') {
