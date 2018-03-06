@@ -21,7 +21,7 @@ node ('Docker-Build-Box') {
 // }
 
 
-node ('CAST-Analysis-Server') {
+/*node ('CAST-Analysis-Server') {
     stage ('CAST Analysis') {
         git credentialsId: '6fca6e6a-2db0-4c2d-abec-513591c993e7', url: 'https://github.com/prabinovich/CAST-Jenkins-Pipeline.git'
         dir('smallFibonacci') {
@@ -38,7 +38,7 @@ node ('CAST-Analysis-Server') {
         bat '%WORKSPACE%\\CLI-Scripts\\CMS_GenerateSnapshot.bat "profile=sandbox802" "app=SmallFibonacci" "version=version %BUILD_NUMBER%"'
     }
 }
-
+*/
 stage('Deploy approval'){
     input "Deploy to prod?"
 }
@@ -73,11 +73,11 @@ node ('Docker-Build-Box') {
         CMD ["/usr/sbin/sshd", "-D"]
         """
         
-        sh "docker build -t prabinovich/smallfibonacci . "
+        sh "docker build -t johnny2136/smallfibonacci . "
    }
 
    stage ('Publish Docker Image') {
-       sh "docker push prabinovich/smallfibonacci"
+       sh "docker push johnny2136/smallfibonacci"
    }
 }
 
@@ -85,11 +85,11 @@ node ('Docker-Deploy-Box') {
     stage ('Docker Cleanup') {
         sh "docker stop smallfibonacci || true"
         sh "docker rm smallfibonacci || true" 
-        sh "docker rmi -f prabinovich/smallfibonacci || true"
+        sh "docker rmi -f johnny2136/smallfibonacci || true"
     }
     
     stage ('Run Docker Container') {
-        sh "docker run --detach=true -p 2222:22 --name smallfibonacci prabinovich/smallfibonacci" 
+        sh "docker run --detach=true -p 2222:22 --name smallfibonacci johnny2136/smallfibonacci" 
     } 
 }
 
