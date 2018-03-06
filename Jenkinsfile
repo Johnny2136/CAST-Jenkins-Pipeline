@@ -1,4 +1,4 @@
-node ('Docker-Build-Box') {
+//node ('Docker-Build-Box') {
    
    stage ('Get Code') {
         git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://github.com/johnny2136/SmallFibonacci.git'
@@ -12,7 +12,7 @@ node ('Docker-Build-Box') {
             sh 'java -cp .:../src/lib/* org.junit.runner.JUnitCore fibo.FibonacciTest'
        }
    }
-}
+//}
 
 //node ('Master'){
    stage ('Sonar Scan') {
@@ -43,7 +43,7 @@ stage('Deploy approval'){
     input "Deploy to prod?"
 }
    
-node ('Docker-Build-Box') { 
+//node ('Docker-Build-Box') { 
    stage ('Build Docker Image') {
        writeFile file: 'Dockerfile', 
         text: """
@@ -79,9 +79,9 @@ node ('Docker-Build-Box') {
    stage ('Publish Docker Image') {
        sh "docker push johnny2136/smallfibonacci"
    }
-}
+//}
 
-node ('Docker-Deploy-Box') {
+//node ('Docker-Deploy-Box') {
     stage ('Docker Cleanup') {
         sh "docker stop smallfibonacci || true"
         sh "docker rm smallfibonacci || true" 
@@ -91,5 +91,5 @@ node ('Docker-Deploy-Box') {
     stage ('Run Docker Container') {
         sh "docker run --detach=true -p 2222:22 --name smallfibonacci johnny2136/smallfibonacci" 
     } 
-}
+//}
 
