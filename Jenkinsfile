@@ -1,7 +1,7 @@
 node ('Docker-Build-Box') {
    
    stage ('Get Code') {
-        git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://gitlab.com/johnny2136/SmallFibonacci.git'
+        git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://github.com/johnny2136/SmallFibonacci.git'
    }
 
    stage ('Build App') {
