@@ -1,4 +1,4 @@
-//node ('Docker-Build-Box') {
+node {
    
    stage ('Get Code') {
         git credentialsId: '1b132c46-025f-4c76-986d-91b3237c7c1f', url: 'https://github.com/johnny2136/SmallFibonacci.git'
@@ -12,7 +12,7 @@
             sh 'java -cp .:../src/lib/* org.junit.runner.JUnitCore fibo.FibonacciTest'
        }
    }
-//}
+}
 
 //node ('Master'){
    stage ('Sonar Scan') {
